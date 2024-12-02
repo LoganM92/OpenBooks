@@ -75,7 +75,6 @@ h1 {
 .main {
     margin-left:25%;
     padding:1px 16px;
-    height:1000px;
 }
 
 .main h1 {
@@ -117,4 +116,40 @@ li a.active {
 li a:hover:not(.active) {
     background-color: #555;
     color: white;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.main label {
+    display: inline-block;
+    /* text-align: center; */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.main label:hover {
+    background-color: red;
+}
+
+.employee {
+    margin-left:25%;
+    padding:1px 16px;  
+}
+
+.employee form {
+    background:  #FFFFFF;
+    width: 180px;
+    height: 180px;
+    border-radius: 25px;
+    padding: 75px 50px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)   
+
 }
