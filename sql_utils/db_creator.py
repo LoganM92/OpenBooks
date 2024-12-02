@@ -2,77 +2,82 @@ import MySQLdb
 from MySQLdb import _mysql
 
 def create_sql_server_and_database(
-    db_name="placeholder",
+    db_name="my_new_database",
     host="localhost",
     user="root",
-    password="password"
+    password="password",
 ):
-    """
-    Connects to MariaDB/MySQL server and creates a database if it does not already exist.
-    Then it creates the Transactions table within the database.
-
-    Args:
-        db_name (str): The name of the database to create.
-        host (str): The host address of the MariaDB server.
-        user (str): The username for MariaDB authentication.
-        password (str): The password for MariaDB authentication (empty for no password).
-
-    Returns:
-        bool: True if the database and table were created or already exist, False otherwise.
-    """
+    """Creates MySQL database and tables."""
     try:
-        # Connect to MariaDB/MySQL server
-        conn = MySQLdb.connect(
-            host=host,
-            user=user,
-            passwd=password  
-        )
+        conn = MySQLdb.connect(host=host, user=user, passwd=password)
         cursor = conn.cursor()
 
-        # Create the database if it doesn't exist
         cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_name}")
-        print(f"Database '{db_name}' has been created or already exists.")
+        print(f"Database '{db_name}' created or already exists.")
 
-        # Select the newly created database
         cursor.execute(f"USE {db_name}")
 
-        # Create the Transactions table if it doesn't exist
-        cursor.execute("""
+        # Create ChartOfAccounts table
+        cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS ChartOfAccounts (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                account_name VARCHAR(255) NOT NULL UNIQUE,
+                account_type VARCHAR(50) NOT NULL,
+                account_subtype VARCHAR(50)
+            );
+        """
+        )
+        print("Table 'ChartOfAccounts' created or already exists.")
+
+        # Create Transactions table
+        cursor.execute(
+            """
             CREATE TABLE IF NOT EXISTS Transactions (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 date DATE,
-                description CHAR(255),
-                payee CHAR(255),
-                category CHAR(255),
-                spent DOUBLE(12, 2),
-                received DOUBLE(12, 2)
+                description VARCHAR(255),
+                payee VARCHAR(255),
+                category VARCHAR(255),
+                spent DECIMAL(12, 2),
+                received DECIMAL(12, 2),
+                chart_of_accounts_id INT,
+                FOREIGN KEY (chart_of_accounts_id) REFERENCES ChartOfAccounts(id)
             );
-        """)
-        print(f"Table 'Transactions' has been created or already exists.")
-        
-        # Create the Vendors table if it doesn't exist
-        cursor.execute("""
+        """
+        )
+        print("Table 'Transactions' created or already exists.")
+
+        # Create Vendors table
+        cursor.execute(
+            """
             CREATE TABLE IF NOT EXISTS Vendors (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                vendor CHAR(255)
+                vendor VARCHAR(255)
             );
-        """)
-        print(f"Table 'Vendors' has been created or already exists.")
-	
-        # Create the Accounts table if it doesn't exist
-        cursor.execute("""
-            CREATE TABLE accounts (
+        """
+        )
+        print("Table 'Vendors' created or already exists.")
+
+
+        # Create AccountBalances table
+        cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS AccountBalances (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                account_name CHAR(255),            -- Account name
-                account_type CHAR(255),            -- Type of account (e.g., 'Expense', 'Revenue')
-                parent_account_id INT NULL,        -- Self-referencing parent account
-                openbooks_balance DOUBLE(12, 2),  -- Openbooks balance for the account
-                bank_balance DOUBLE(12, 2),       -- Bank balance for the account
-                FOREIGN KEY (parent_account_id) REFERENCES accounts(id) -- Foreign key for parent account
+                chart_of_accounts_id INT,
+                balance_date DATE,
+                openbooks_balance DECIMAL(12,2),
+                bank_balance DECIMAL(12,2),
+                FOREIGN KEY (chart_of_accounts_id) REFERENCES ChartOfAccounts(id)
             );
-        """)
-        print(f"Table 'Accounts' has been created or already exists.")
-        
+
+        """
+        )
+        print("Table 'AccountBalances' created or already exists.")
+
+
+
         return True
 
     except _mysql.MySQLError as err:
@@ -80,7 +85,5 @@ def create_sql_server_and_database(
         return False
 
     finally:
-        # Close the connection
-        if 'conn' in locals() and conn.open:
+        if "conn" in locals() and conn.open:
             conn.close()
-
