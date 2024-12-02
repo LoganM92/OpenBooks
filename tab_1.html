@@ -32,7 +32,24 @@
 
         	function handleCsvFile(file) {
             	console.log(file.name);
-            	// Implement file handling logic here
+            	const formData = new FormData();
+				formData.append('csv_file',file);
+				fetch('127.0.0.1',{
+					method: 'POST',
+					body:formData
+				})
+				.then(response => response.json())
+				.then(data => {
+					if(data.success) {
+						alert('File upload successful');
+					} else {
+						alert('File upload failed' + data.message);
+					}
+				})
+				.catch(error => {
+					console.error('Error', error);
+					alert('An error occured during file upload.');
+				})
         	}
     	</script>
     </body>
