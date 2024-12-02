@@ -8,49 +8,16 @@
         <ul>
 			<li><a href="tabs.html">Login</a></li>
 			<li><a href="tab_0.html">Home</a></li>
-			<li><a class="active" href="tab_1.html">Balance Sheet</a></li>
-			<li><a href="tab_2.html">Tab_2</a></li>
+			<li><a class="active" href="tab_1.html">Overlook</a></li>
+			<li><a href="tab_2.html">Balance Sheet</a></li>
 			<li><a href="tab_3.html">Tab_3</a></li>
-		  </ul>
-		  
-		  <div class="main">
-			<h1>Openbooks</h1>
-			<input type="file" name="csvFile" id="csvFile" accept=".csv">
-			<label for="csvFile">Input CSV File</label>
-		  </div>
-		  <script>
-			const fileInput = document.getElementById("csvFile");
-        	fileInput.addEventListener("change", function () {
-            const file = fileInput.files[0];
-            	if (file && file.type === "text/csv") {
-                	alert("CSV file has been selected: " + file.name);
-                	handleCsvFile(file);
-            	} else {
-                	alert("Please select a CSV file.");
-            	}
-        	});
+		</ul>
 
-        	function handleCsvFile(file) {
-            	console.log(file.name);
-            	const formData = new FormData();
-				formData.append('csv_file',file);
-				fetch('127.0.0.1',{
-					method: 'POST',
-					body:formData
-				})
-				.then(response => response.json())
-				.then(data => {
-					if(data.success) {
-						alert('File upload successful');
-					} else {
-						alert('File upload failed' + data.message);
-					}
-				})
-				.catch(error => {
-					console.error('Error', error);
-					alert('An error occured during file upload.');
-				})
-        	}
-    	</script>
+		<div class="main">
+			<h1>This is Openbooks Tab_2</h1>
+			<h3>Wow!</h3>
+			<p>TEMP</p>
+		  </div>
+		  
     </body>
 </html>
