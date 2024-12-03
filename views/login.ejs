@@ -5,12 +5,9 @@
         <link rel="stylesheet" href="/css/login.css">
     </head>
     <body>
-        <% if (message.error) { %>
-            <div class="error-message">
-                <%= message.error %>
-            </div>
-            <% } %>
-        
+    <% if (messages.error) { %>
+        <%= messages.error %>
+    <% } %>        
         <form action="/login" method="POST">
             <h1>Login</h1>
             <div class="textBox">
