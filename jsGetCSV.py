@@ -75,7 +75,11 @@ def balance_sheet():
 
 @app.route('/tab_3')
 def tab_3():
-    return render_template('tab_3.html')  
+    return render_template('tab_3.html')
+
+@app.route('/tab_4')
+def tab_4():
+    return render_template('tab_4.html')    
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
