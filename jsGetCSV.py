@@ -7,7 +7,7 @@ from sql_utils.AddAccount import add_account
 app = Flask(__name__)
 @app.route('/')
 def index():
-    return render_template('tab_2.html')
+    return render_template('login.html')
     
     
 @app.route('/upload_csv', methods=['POST'])
@@ -57,6 +57,33 @@ def add_account_route():
 
     return jsonify({"success": success, "message": message})
 
+@app.route('/tabs')
+def tabs():
+    return render_template('tabs.html')  
 
+@app.route('/home')
+def home():
+    return render_template('tab_0.html')
+
+@app.route('/overlook')
+def overlook():
+    return render_template('tab_1.html')
+
+@app.route('/balance_sheet')
+def balance_sheet():
+    return render_template('tab_2.html')
+
+@app.route('/tab_3')
+def tab_3():
+    return render_template('tab_3.html')  
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+    
+    return render_template('tab_0.html')      
+    
 if __name__ == '__main__':
     app.run(debug=True)
