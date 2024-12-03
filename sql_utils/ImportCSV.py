@@ -1,3 +1,7 @@
+"""
+Note for transactions to be added there needs to be an account in the chart of accounts 
+with the same name already
+"""
 import csv
 import MySQLdb
 from datetime import datetime
