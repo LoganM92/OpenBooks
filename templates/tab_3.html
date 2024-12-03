@@ -10,13 +10,40 @@
             <li><a href="/home">Home</a></li>
             <li><a href="/overlook">Overlook</a></li>
             <li><a href="/balance_sheet">Balance Sheet</a></li>
-            <li><a class="active" href="/tab_3">Tab 3</a></li>
+            <li><a class="active" href="/tab_3">Account</a></li>
         </ul>
-		  
-		  <div class="main">
-			<h1>This is Openbooks Tab_3</h1>
-			<h3>Wow!</h3>
-			<p>TEMP</p>
-		  </div>
+		
+        <div class="main">
+            <h1>Corporate Account</h1>
+        </div>
+        <div class="main">
+            <form id="addAccountForm">
+                <h1>Add Account</h1>
+                <label for="accountName">Account Name:</label>
+                <input type="text" id="accountName" name="account_name" required>
+    
+                <p></p>
+                <label for="accountType">Account Type:</label>
+                <select id="accountType" name="account_type" required>
+                    <option value="Asset">Asset</option>
+                    <option value="Liability">Liability</option>
+                    <option value="Equity">Equity</option>
+                </select>
+    
+                <p></p>
+                <label for="accountSubtype">Account Subtype:</label>
+                <input type="text" id="accountSubtype" name="account_subtype">
+                <p></p>
+                <button type="button" id="addAccountButton">Add Account</button>
+            </form>
+        </div>
+
+        <script>
+            const boop = document.getElementById("addAccountButton");
+            boop.addEventListener("click", accAlert);
+            function accAlert() {
+                alert("Account has been added");
+            }
+        </script>
     </body>
 </html>
