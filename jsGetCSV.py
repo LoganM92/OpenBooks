@@ -81,6 +81,14 @@ def tab_3():
 def tab_4():
     return render_template('tab_4.html')    
 
+@app.route('/tab_5')
+def tab_5():
+    return render_template('tab_5.html')    
+
+@app.route('/tab_6')
+def tab_6():
+    return render_template('tab_6.html')   
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
