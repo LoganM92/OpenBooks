@@ -1,8 +1,14 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_file
 import os
 import tempfile
+from datetime import datetime, date
 from sql_utils.ImportCSV import parse_csv_and_insert_transactions
 from sql_utils.AddAccount import add_account
+from sql_utils.CreateIncomeStatement import generate_income_statement, generate_income_statement_pdf
+
+
+
+
 
 app = Flask(__name__)
 @app.route('/')
@@ -57,6 +63,9 @@ def add_account_route():
 
     return jsonify({"success": success, "message": message})
 
+
+
+
 @app.route('/tabs')
 def tabs():
     return render_template('tabs.html')  
@@ -77,9 +86,46 @@ def balance_sheet():
 def tab_3():
     return render_template('tab_3.html')
 
-@app.route('/tab_4')
-def tab_4():
-    return render_template('tab_4.html')    
+@app.route('/tab_4', methods=['GET', 'POST'])
+def income_statement():
+    print(request.form)
+    if request.method == 'POST':
+        try:
+            start_date_str = request.form.get('start_date')
+            end_date_str = request.form.get('end_date')
+
+
+            start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
+            end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
+
+
+
+            income_statement_data, totals = generate_income_statement(start_date, end_date)
+
+            if income_statement_data:
+                try:
+                    pdf_filename = "income_statement.pdf"
+
+
+                    generate_income_statement_pdf(
+                        income_statement_data, totals, start_date, end_date, pdf_filename
+                    )
+
+                    pdf_filepath = os.path.join(app.root_path, pdf_filename)
+
+
+                    return send_file(pdf_filepath, as_attachment=True)
+
+                except Exception as e:
+                    return jsonify({"success": False, "message": str(e)}), 500
+            else:
+                return jsonify({"success": False, "message": totals}), 500
+
+
+        except ValueError:
+            return jsonify({"success": False, "message": "Invalid date format. Please use YYYY-MM-DD."}), 400
+
+    return render_template('tab_4.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

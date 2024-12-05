@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Openbooks</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
-    </head>
-    <body>
-        <ul>
-            <li><a href="/">Login</a></li>  </li>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/overlook">Overlook</a></li>
-            <li><a href="/balance_sheet">Balance Sheet</a></li>
-            <li><a href="/tab_3">Account</a></li>
-            <li><a class="active" href="/tab_4">Income Statement</a></li>
-        </ul>
+<head>
+    <title>Openbooks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Login</a></li>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/overlook">Overlook</a></li>
+        <li><a href="/balance_sheet">Balance Sheet</a></li>
+        <li><a href="/tab_3">Account</a></li>
+        <li><a class="active" href="/tab_4">Income Statement</a></li>
+    </ul>
 
-		<div class="main">
-			<h1>Income Statement</h1>
-			<form id="addAccountForm">
-                <h1>Statement Generation</h1>
-                <button class="mid" type="button" id="genStatementBtn">Generate</button>
-            </form>
-		</div>
+    <div class="main">
+        <h1>Income Statement</h1>
+        <form id="incomeStatementForm" method="POST" action="/tab_4">
+            <label for="start_date">Start Date (YYYY-MM-DD):</label>
+            <input type="date" id="start_date" name="start_date" required><br><br>
 
-        <script>
-            const boop = document.getElementById("genStatementBtn");
-            boop.addEventListener("click", genStatement);
-            function genStatement() {
-                alert("Generating Statement");
-            }
-        </script>
-    </body>
+            <label for="end_date">End Date (YYYY-MM-DD):</label>
+            <input type="date" id="end_date" name="end_date" required><br><br>
+
+            <button type="submit">Generate Income Statement</button>
+        </form>
+    </div>
+
+</body>
 </html>
