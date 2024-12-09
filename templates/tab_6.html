@@ -6,7 +6,6 @@
 </head>
 <body>
         <ul>
-
             <li><a href="/">Login</a></li>  </li>
             <li><a href="/home">Home</a></li>
             <li><a href="/overlook">Overlook</a></li>
@@ -18,15 +17,15 @@
         </ul>
     
     
-    <div class="main">
+    <div id="6_div" class="main">
         <!-- CSV Upload Form -->
 
         <h1>Transactions</h1>
         <form>
             <h1>Transaction CSV Input</h1>
             <input type="file" name="csvFile" id="csvFile" accept=".csv">
-            <label class="mid" for="csvFile" class="file-upload-label">Input CSV File</label>
-
+            <label class="mid" for="csvFile" class="file-upload-label" onclick="do_change(); return false;">Input CSV File</label>
+            <button style="display:none;">Download</button>
         </form>
     </div>
 
@@ -63,39 +62,6 @@
                 alert('An error occurred during file upload.');
             });
         }
-
-        // JavaScript for adding accounts
-        const addAccountForm = document.getElementById('addAccountForm');
-        const addAccountButton = document.getElementById('addAccountButton');
-
-        addAccountButton.addEventListener('click', () => {
-            const accountName = document.getElementById('accountName').value;
-            const accountType = document.getElementById('accountType').value;
-            const accountSubtype = document.getElementById('accountSubtype').value;
-
-            fetch('/add_account', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    account_name: accountName,
-                    account_type: accountType,
-                    account_subtype: accountSubtype
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-                if (data.success) {
-                    addAccountForm.reset();
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("An error occurred while adding the account.");
-            });
-        });
     </script>
 </body>
 </html>

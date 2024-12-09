@@ -59,7 +59,7 @@ def add_account_route():
     if not account_name or not account_type:  # Basic validation
         return jsonify({"success": False, "message": "Account name and type are required."}), 400
 
-    success, message = AddAccount.add_account(account_name, account_type, account_subtype) # Returns tuple
+    success, message = add_account(account_name, account_type, account_subtype) # Returns tuple
 
     return jsonify({"success": success, "message": message})
 
