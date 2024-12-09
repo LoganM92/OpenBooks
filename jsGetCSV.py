@@ -5,16 +5,16 @@ from datetime import datetime, date
 from sql_utils.ImportCSV import parse_csv_and_insert_transactions
 from sql_utils.AddAccount import add_account
 from sql_utils.CreateIncomeStatement import generate_income_statement, generate_income_statement_pdf
+from sql_utils.AddUser import get_password, add_user
 
-
-
+#from werkzeug.security import generate_password_hash, check_password_hash
+import random
 
 
 app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('login.html')
-    
     
 @app.route('/upload_csv', methods=['POST'])
 def upload_csv():
@@ -62,9 +62,6 @@ def add_account_route():
     success, message = add_account(account_name, account_type, account_subtype) # Returns tuple
 
     return jsonify({"success": success, "message": message})
-
-
-
 
 @app.route('/tabs')
 def tabs():
@@ -135,21 +132,49 @@ def tab_5():
 def tab_6():
     return render_template('tab_6.html')   
 
-@app.route('/tab_5')
-def tab_5():
-    return render_template('tab_5.html')    
-
-@app.route('/tab_6')
-def tab_6():
-    return render_template('tab_6.html')   
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+    if request.method == 'GET':
+        return render_template("login.html")
     
-    return render_template('tab_0.html')      
+    if request.method == 'POST':
+        username = request.form["username"]
+        password = request.form["password"]
+
+        stored_password = get_password(username)
+
+        if stored_password:
+            print(f"DEBUG: Stored password = {stored_password}")
+            
+            if stored_password == password:
+                print("Login succesful!", "success")
+                return render_template("tab_0.html")
+            else:
+                print("Invalidpassword", "error")
+        else:
+            print("Invalid username or password,", "error")
+        
+        return render_template("login.html")
+
+        
+        
+
+    
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'GET':
+        return render_template("register.html")
+
+    if request.method == 'POST':
+        username = request.form["username"]
+        password = request.form["password"]
+
+        # random int for user_id
+        id = random.randint(1,9999)
+        success, message = add_user(id, username, password) # Returns tuple
+
+    return render_template('login.html')   
     
 if __name__ == '__main__':
     app.run(debug=True)

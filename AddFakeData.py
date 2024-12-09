@@ -13,6 +13,7 @@ DB_USER = "root"
 DB_PASSWORD = "password"
 DB_NAME = "my_new_database"  
 
+
 # Connect to the database
 def connect_to_db():
     return MySQLdb.connect(
