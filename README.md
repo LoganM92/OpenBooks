@@ -11,4 +11,5 @@ flask (pip install flask)
 MySQLdb (pip install mysqlclient)
 
 To run:
+If this is the first time: run python CreateDatabaseProto.py then run python jsGetCSV.py
 python jsGetCSV.py
