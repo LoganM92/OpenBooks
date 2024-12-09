@@ -1,0 +1,51 @@
+date,description,payee,category,spent,received,account_name
+2024-11-04,Transaction 1,Vendor B,Purchases,495.67,,Credit Card Payable
+2024-07-13,Transaction 2,Vendor C,Purchases,,,Retained Earnings
+2024-03-27,Transaction 3,Vendor B,Sales,452.46,,Credit Card Payable
+2024-01-31,Transaction 4,Vendor B,Rent,,,Cash
+2024-07-08,Transaction 5,Vendor B,Rent,425.68,,Accounts Receivable
+2024-02-07,Transaction 6,Vendor D,Utilities,486.44,,Owner's Equity
+2024-10-26,Transaction 7,Vendor C,Utilities,452.08,221.84,Inventory
+2024-01-30,Transaction 8,Vendor B,Utilities,9.33,741.12,Owner's Equity
+2024-01-07,Transaction 9,Vendor C,Purchases,164.02,483.3,Credit Card Payable
+2024-01-23,Transaction 10,Vendor A,Purchases,,,Retained Earnings
+2024-09-26,Transaction 11,Vendor E,Purchases,299.84,,Accounts Payable
+2024-03-04,Transaction 12,Vendor D,Payroll,394.31,178.13,Cash
+2024-08-01,Transaction 13,Vendor A,Payroll,,237.38,Owner's Equity
+2024-03-15,Transaction 14,Vendor B,Purchases,106.18,,Owner's Equity
+2024-06-01,Transaction 15,Vendor C,Rent,,756.71,Retained Earnings
+2024-01-17,Transaction 16,Vendor B,Purchases,119.15,535.46,Owner's Equity
+2024-03-01,Transaction 17,Vendor D,Utilities,103.2,592.87,Credit Card Payable
+2024-06-30,Transaction 18,Vendor C,Purchases,,,Accounts Payable
+2023-12-21,Transaction 19,Vendor B,Utilities,,420.58,Accounts Payable
+2024-08-01,Transaction 20,Vendor B,Rent,,,Credit Card Payable
+2024-08-24,Transaction 21,Vendor D,Utilities,290.45,,Retained Earnings
+2024-01-26,Transaction 22,Vendor C,Payroll,478.52,,Cash
+2023-12-23,Transaction 23,Vendor A,Payroll,470.27,,Credit Card Payable
+2024-09-30,Transaction 24,Vendor B,Sales,280.92,,Retained Earnings
+2024-11-26,Transaction 25,Vendor C,Purchases,,,Credit Card Payable
+2024-10-31,Transaction 26,Vendor D,Payroll,210.73,99.6,Owner's Equity
+2024-11-23,Transaction 27,Vendor B,Utilities,246.77,,Inventory
+2024-05-11,Transaction 28,Vendor C,Sales,,94.48,Retained Earnings
+2023-12-16,Transaction 29,Vendor C,Utilities,153.23,,Cash
+2023-12-11,Transaction 30,Vendor E,Utilities,185.51,923.69,Retained Earnings
+2023-12-20,Transaction 31,Vendor D,Rent,438.24,903.85,Retained Earnings
+2024-05-01,Transaction 32,Vendor C,Utilities,460.76,788.99,Accounts Payable
+2023-12-28,Transaction 33,Vendor A,Utilities,374.75,823.06,Inventory
+2024-09-09,Transaction 34,Vendor C,Purchases,129.18,403.78,Accounts Payable
+2024-06-26,Transaction 35,Vendor B,Purchases,391.46,826.47,Accounts Payable
+2024-02-17,Transaction 36,Vendor A,Purchases,324.2,452.83,Inventory
+2023-12-13,Transaction 37,Vendor D,Purchases,382.67,,Accounts Payable
+2024-10-05,Transaction 38,Vendor A,Purchases,30.57,912.84,Retained Earnings
+2024-06-21,Transaction 39,Vendor C,Payroll,267.27,,Accounts Payable
+2023-12-29,Transaction 40,Vendor A,Sales,347.04,267.63,Retained Earnings
+2024-01-02,Transaction 41,Vendor C,Sales,335.98,639.6,Inventory
+2024-10-29,Transaction 42,Vendor C,Utilities,1.64,,Accounts Receivable
+2024-03-26,Transaction 43,Vendor A,Sales,373.99,,Retained Earnings
+2024-10-05,Transaction 44,Vendor D,Purchases,460.5,,Cash
+2024-01-08,Transaction 45,Vendor E,Purchases,,984.82,Owner's Equity
+2024-02-14,Transaction 46,Vendor B,Sales,214.29,,Owner's Equity
+2024-07-02,Transaction 47,Vendor C,Purchases,436.86,,Inventory
+2024-03-31,Transaction 48,Vendor D,Rent,128.89,196.25,Credit Card Payable
+2024-10-07,Transaction 49,Vendor D,Rent,,,Owner's Equity
+2024-11-12,Transaction 50,Vendor B,Utilities,259.66,,Owner's Equity

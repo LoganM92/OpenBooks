@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Openbooks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
+</head>
+<body>
+        <ul>
+
+            <li><a href="/">Login</a></li>  </li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/overlook">Overlook</a></li>
+            <li><a class="active" href= "/balance_sheet">Balance Sheet</a></li>
+            <li><a href="/tab_3">Account</a></li>
+            <li><a href="/tab_4">Income Statement</a></li>
+        </ul>
+    
+    
+    <div class="main">
+        <!-- CSV Upload Form -->
+
+        <h1>Balance Sheets</h1>
+        <form>
+            <h1>Balance Sheet Input</h1>
+            <input type="file" name="csvFile" id="csvFile" accept=".csv">
+            <label class="mid" for="csvFile" class="file-upload-label">Input CSV File</label>
+
+        </form>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById("csvFile");
+        fileInput.addEventListener("change", function () {
+            const file = fileInput.files[0];
+            if (file && file.type === "text/csv") {
+                alert("CSV file has been selected: " + file.name);
+                handleCsvFile(file);
+            } else {
+                alert("Please select a CSV file.");
+            }
+        });
+
+        function handleCsvFile(file) {
+            console.log(file.name);
+            const formData = new FormData();
+            formData.append('csv_file', file);
+            fetch('/upload_csv', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('File upload successful');
+                } else {
+                    alert('File upload failed: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error', error);
+                alert('An error occurred during file upload.');
+            });
+        }
+
+        // JavaScript for adding accounts
+        const addAccountForm = document.getElementById('addAccountForm');
+        const addAccountButton = document.getElementById('addAccountButton');
+
+        addAccountButton.addEventListener('click', () => {
+            const accountName = document.getElementById('accountName').value;
+            const accountType = document.getElementById('accountType').value;
+            const accountSubtype = document.getElementById('accountSubtype').value;
+
+            fetch('/add_account', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    account_name: accountName,
+                    account_type: accountType,
+                    account_subtype: accountSubtype
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    addAccountForm.reset();
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred while adding the account.");
+            });
+        });
+    </script>
+</body>
+</html>
+

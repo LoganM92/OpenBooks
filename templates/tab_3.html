@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Openbooks</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
+    </head>
+    <body>
+        <ul>
+            <li><a href="/">Login</a></li>  </li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/overlook">Overlook</a></li>
+            <li><a href="/balance_sheet">Balance Sheet</a></li>
+
+            <li><a class="active" href="/tab_3">Account</a></li>
+            <li><a href="/tab_4">Income Statement</a></li>
+        </ul>
+		
+        <div class="main">
+            <h1>Corporate Account</h1>
+        </div>
+        <div class="main">
+            <form id="addAccountForm">
+                <h1>Add Account</h1>
+                <label for="accountName">Account Name:</label>
+                <input type="text" id="accountName" name="account_name" required>
+    
+                <p></p>
+                <label for="accountType">Account Type:</label>
+                <select id="accountType" name="account_type" required>
+                    <option value="Asset">Asset</option>
+                    <option value="Liability">Liability</option>
+                    <option value="Equity">Equity</option>
+                </select>
+    
+                <p></p>
+                <label for="accountSubtype">Account Subtype:</label>
+                <input type="text" id="accountSubtype" name="account_subtype">
+                <p></p>
+                <button type="button" id="addAccountButton">Add Account</button>
+            </form>
+        </div>
+
+        <script>
+            const boop = document.getElementById("addAccountButton");
+            boop.addEventListener("click", accAlert);
+            function accAlert() {
+                alert("Account has been added");
+            }
+        </script>
+
+    </body>
+</html>
