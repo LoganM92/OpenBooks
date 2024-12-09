@@ -20,15 +20,31 @@
 			<h1>Employees</h1>
 			<form id="addAccountForm">
                 <h1>Employee Generation</h1>
-                <button class="mid" type="button" id="genStatementBtn">Generate</button>
+                <label for="empName">Full Name:</label>
+                <input type="text" id="empName" name="emp_name" required>
+                <p></p>
+                <label for="empPhone">Phone Number:</label>
+                <input type="text" id="empPhone" name="emp_phone" required>
+                <p></p>
+                <label for="empSal">Salary:</label>
+                <input type="text" id="empSal" name="emp_sal" required>
+                <p></p>
+                <label for="empType">Employee Type:</label>
+                <select id="empType" name="emp_type" required>
+                    <option value="W2">W2</option>
+                    <option value="1099">1099</option>
+                </select>
+                <p></p>
+                <button type="button" id="genEmployeeBtn">Add</button>
             </form>
 		</div>
 
         <script>
-            const boop = document.getElementById("genStatementBtn");
+            const boop = document.getElementById("genEmployeeBtn");
             boop.addEventListener("click", genStatement);
             function genStatement() {
-                alert("Generating Statement");
+                alert("Adding Employee");
+                //DISPLAY MUST BE WORKED ON
             }
         </script>
     </body>
