@@ -30,6 +30,18 @@ def create_sql_server_and_database(
         )
         print("Table 'ChartOfAccounts' created or already exists.")
 
+        # Create user table
+        cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(255) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL UNIQUE
+            );
+            """
+        )
+        print("Table 'users' created or already exists.")
+
         # Create Transactions table
         cursor.execute(
             """

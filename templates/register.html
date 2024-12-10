@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Openbooks Login</title>
+        <title>Openbooks Register</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
     </head>
     <body>
-        <form action="/login" method="POST">
-            <h1>Login</h1>
+        <form action="/register" method="POST">
+            <h1>Register</h1>
             <div class="textBox">
                 <input type="text" name="username" placeholder="Username" required> 
             </div>
             <div class="textBox">
                 <input type="password" name="password" placeholder="Password" required> 
             </div>
-            <input type="submit" value="Login", class="logInBtn">
-            <div class="signup">
-                Need an account ?
-            </br>
-            <a href="/register">Sign up</a>
-            </div>
+            <input type="submit" value="Register", class="logInBtn">
+            <a href="/login">Login</a>
         </form>
+
     </body>
 </html>
